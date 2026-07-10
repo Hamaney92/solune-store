@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: solune-store
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: ADMIN_TOKEN
+        generateValue: true
+      - key: DB_PATH
+        value: /var/data/orders.db
+
