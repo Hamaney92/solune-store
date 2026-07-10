@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOLUNE — Admin commandes</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+body{font-family:system-ui,sans-serif;background:#0F1B33;color:#eee;margin:0;padding:30px}
+h1{font-size:1.4rem;color:#E3C983}
+.card{background:#16234A;border-radius:12px;padding:20px;margin:16px 0}
+input,button,select{padding:10px 14px;border-radius:8px;border:none;font-size:.95rem}
+button{background:#C9A24B;color:#0F1B33;font-weight:700;cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th,td{padding:10px 8px;text-align:left;border-bottom:1px solid #24335f}
+th{color:#E3C983;font-weight:600}
+.kpi{display:flex;gap:16px;flex-wrap:wrap}
+.kpi div{background:#16234A;border-radius:12px;padding:16px 24px}
+.kpi b{font-size:1.5rem;color:#E3C983;display:block}
+select.st{background:#0F1B33;color:#eee}
+#err{color:#ff9c9c}
+</style>
+</head>
+<body>
+<h1>☾ SOLUNE — Commandes</h1>
+<div class="card" id="login">
+  <label>Token admin : <input type="password" id="token" placeholder="ADMIN_TOKEN"></label>
+  <button onclick="load()">Se connecter</button>
+  <span id="err"></span>
+</div>
+<div class="kpi" id="kpis" style="display:none">
+  <div><b id="kCount">0</b>commandes</div>
+  <div><b id="kRev">0 €</b>chiffre d'affaires</div>
+  <div><b id="kNew">0</b>à traiter</div>
+</div>
+<div class="card" style="overflow-x:auto">
+  <table id="tbl"><thead><tr>
+    <th>ID</th><th>Date</th><th>Client</th><th>Email / Tél</th><th>Adresse</th><th>Offre</th><th>Total</th><th>Paiement</th><th>Statut</th>
+  </tr></thead><tbody></tbody></table>
+</div>
+<script>
+const API_BASE = (localStorage.getItem('solune_api') || '').replace(/\/$/, '');
+let TOKEN = localStorage.getItem('solune_token') || '';
+if (TOKEN) { document.getElementById('token').value = TOKEN; load(); }
+async function load(){
+  TOKEN = document.getElementById('token').value.trim();
+  let r = null;
+  try { r = await fetch(API_BASE + '/api/orders', {headers:{'x-admin-token': TOKEN}}); } catch(e) {}
+  if (!r || !r.ok) {
+    // Mode demo : lit les commandes locales
+    const demo = JSON.parse(localStorage.getItem('solune_demo_orders') || '[]');
+    if (demo.length || !r) {
+      renderDemo(demo);
+      document.getElementById('err').textContent = r ? ' Token invalide' : ' (mode demo - backend non connecte)';
+      return;
+    }
+    document.getElementById('err').textContent = ' Token invalide'; return;
+  }
+  localStorage.setItem('solune_token', TOKEN);
+  document.getElementById('err').textContent = '';
+  const j = await r.json();
+  document.getElementById('kpis').style.display = 'flex';
+  document.getElementById('kCount').textContent = j.count;
+  document.getElementById('kRev').textContent = j.revenue.toFixed(2) + ' €';
+  document.getElementById('kNew').textContent = j.orders.filter(o => o.status === 'new').length;
+  const tb = document.querySelector('#tbl tbody'); tb.innerHTML = '';
+  for (const o of j.orders) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${o.id}</td><td>${new Date(o.created_at).toLocaleString('fr-FR')}</td>
+      <td>${o.name}</td><td>${o.email}<br>${o.phone || ''}</td>
+      <td>${o.address}, ${o.zip} ${o.city}, ${o.country}</td>
+      <td>${o.offer}</td><td>${o.total_eur.toFixed(2)} €</td><td>${o.payment_method}</td>
+      <td><select class="st" onchange="setStatus('${o.id}', this.value)">
+        ${['new','paid','shipped','delivered','cancelled'].map(s => `<option ${s===o.status?'selected':''}>${s}</option>`).join('')}
+      </select></td>`;
+    tb.appendChild(tr);
+  }
+}
+function renderDemo(demo){
+  document.getElementById('kpis').style.display = 'flex';
+  document.getElementById('kCount').textContent = demo.length;
+  document.getElementById('kRev').textContent = '-';
+  document.getElementById('kNew').textContent = demo.length;
+  const tb = document.querySelector('#tbl tbody'); tb.innerHTML = '';
+  for (const o of demo) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${o.id}</td><td>${new Date(o.created_at).toLocaleString('fr-FR')}</td>
+      <td>${o.name}</td><td>${o.email}<br>${o.phone || ''}</td>
+      <td>${o.address}, ${o.zip} ${o.city}, ${o.country}</td>
+      <td>${o.offer}</td><td>${o.total_eur}</td><td>demo</td><td>${o.status}</td>`;
+    tb.appendChild(tr);
+  }
+}
+async function setStatus(id, status){
+  await fetch(API_BASE + '/api/orders/' + id, {method:'PATCH', headers:{'Content-Type':'application/json','x-admin-token':TOKEN}, body: JSON.stringify({status})});
+  load();
+}
+</script>
+</body>
+</html>
