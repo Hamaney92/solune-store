@@ -141,6 +141,17 @@ app.post("/api/checkout", async (req, res) => {
   }
 });
 
+db.exec(`CREATE TABLE IF NOT EXISTS leads (email TEXT PRIMARY KEY, created_at TEXT NOT NULL)`);
+app.post("/api/leads", (req, res) => {
+  const email = String((req.body || {}).email || "").slice(0, 160);
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return res.status(400).json({ error: "Email invalide" });
+  db.prepare("INSERT OR IGNORE INTO leads (email, created_at) VALUES (?, ?)").run(email, new Date().toISOString());
+  res.json({ ok: true });
+});
+app.get("/api/leads", requireAdmin, (req, res) => {
+  res.json({ leads: db.prepare("SELECT * FROM leads ORDER BY created_at DESC").all() });
+});
+
 app.get("/api/health", (_, res) => res.json({ ok: true, ts: Date.now() }));
 
 app.listen(PORT, () => console.log(`SOLUNE store -> http://localhost:${PORT} (admin: /admin, token: ${ADMIN_TOKEN})`));
