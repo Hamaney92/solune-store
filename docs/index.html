@@ -165,7 +165,7 @@ footer a:hover{color:var(--gold-2)}
 </head>
 <body>
 
-<div class="annonce">☀️ OFFRE DE LANCEMENT — <b>Livraison offerte</b> · Le Duo (2 sets) à <b>55,80 €</b> · Expédié sous 24 h</div>
+<div class="annonce">☀️ OFFRE DE LANCEMENT — <b>Livraison offerte</b> · Le Duo (2 sets) à <b>55,80 €</b> · Commandé avant 17 h = <b>expédié aujourd'hui</b></div>
 
 <header>
   <nav class="nav">
@@ -188,7 +188,7 @@ footer a:hover{color:var(--gold-2)}
       <a class="btn btn-gold" href="#commander">Je commande le set ✦</a>
       <div class="trust">
         <div>🚚 Livraison offerte (7-12 j)</div>
-        <div>↩️ Retours 30 jours</div>
+        <div>↩️ Garantie du Clic — 30 j, remboursé sans raison</div>
         <div>🔒 Paiement sécurisé</div>
         <div>💎 Acier inoxydable</div>
       </div>
@@ -313,9 +313,21 @@ footer a:hover{color:var(--gold-2)}
         <div class="total-line"><span>Total (livraison offerte)</span><span id="total">55,80 €</span></div>
         <button class="btn btn-gold" type="submit" style="width:100%" id="payBtn">Confirmer ma commande →</button>
         <div class="msg" id="msg"></div>
-        <p class="secure">🔒 Données chiffrées (SSL) · Retour 30 jours · Service client : bonjour@solune.shop</p>
+        <p class="secure">🔒 Données chiffrées (SSL) · Garantie du Clic : 30 jours, remboursé sans justification · bonjour@solune.shop</p>
       </form>
     </div>
+  </div>
+</section>
+
+<section style="background:var(--cream);padding:56px 0">
+  <div class="container" style="max-width:640px;text-align:center">
+    <h2 class="sec-title" style="font-size:1.9rem">Rejoignez le cercle SOLUNE</h2>
+    <p class="sec-sub" style="margin-bottom:22px">Recevez <b>-10 % sur votre première commande</b> + l'accès en avant-première aux nouvelles séries. Zéro spam, promis.</p>
+    <form id="leadForm" style="display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center">
+      <input type="email" id="leadEmail" required placeholder="votre@email.com" style="flex:1;min-width:220px">
+      <button class="btn btn-gold" type="submit">Recevoir mon code ✦</button>
+    </form>
+    <div class="msg" id="leadMsg" style="max-width:440px;margin:14px auto 0"></div>
   </div>
 </section>
 
@@ -386,6 +398,20 @@ document.getElementById('orderForm').addEventListener('submit', async (e) => {
   } finally {
     btn.disabled = false; btn.textContent = "Confirmer ma commande →";
   }
+});
+
+document.getElementById('leadForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('leadEmail').value.trim();
+  const m = document.getElementById('leadMsg');
+  try {
+    let ok=false; try { const r = await fetch(API_BASE + '/api/leads', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email})}); ok = r.ok; } catch(_) {} if (!ok) {
+      const L = JSON.parse(localStorage.getItem('solune_leads') || '[]'); L.push({email, ts: Date.now()}); localStorage.setItem('solune_leads', JSON.stringify(L));
+    }
+    m.className = 'msg ok';
+    m.innerHTML = '✅ Bienvenue dans le cercle ! Votre code : <b>SOLUNE10</b> (-10 % sur votre première commande).';
+    e.target.reset();
+  } catch(err) { m.className = 'msg err'; m.textContent = 'Réessayez ou écrivez-nous.'; }
 });
 </script>
 </body>
