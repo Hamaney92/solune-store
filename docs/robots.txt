@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hamaney92.github.io/solune-store/sitemap.xml

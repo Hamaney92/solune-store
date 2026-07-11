@@ -6,7 +6,7 @@
 <title>SOLUNE — Colliers Magnétiques Soleil & Lune pour Couple | Le Clic qui vous relie</title>
 <meta name="description" content="SOLUNE : le set de 2 colliers magnétiques Soleil & Lune pour couple. Acier inoxydable, aimants puissants, livraison offerte en Europe. Le cadeau de couple le plus émouvant de 2026 — 34,90 €.">
 <meta name="keywords" content="collier couple, collier pour couple, collier couple magnétique, collier soleil lune, cadeau couple, collier couple à distance, matching necklaces for couples">
-<link rel="canonical" href="https://solune.shop/">
+<link rel="canonical" href="https://hamaney92.github.io/solune-store/">
 <meta property="og:type" content="product">
 <meta property="og:title" content="SOLUNE — Colliers Magnétiques Soleil & Lune pour Couple">
 <meta property="og:description" content="Deux colliers. Un seul clic. Le bijou magnétique qui matérialise votre lien — 34,90 € le set, livraison offerte.">
@@ -26,10 +26,10 @@
   "brand": {"@type": "Brand", "name": "SOLUNE"},
   "offers": {
     "@type": "Offer",
-    "url": "https://solune.shop/",
+    "url": "https://hamaney92.github.io/solune-store/",
     "priceCurrency": "EUR",
     "price": "34.90",
-    "availability": "https://schema.org/InStock",
+    "availability": "https://schema.org/PreOrder",
     "shippingDetails": {"@type": "OfferShippingDetails", "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "EUR"}}
   }
 }
@@ -168,12 +168,12 @@ footer a:hover{color:var(--gold-2)}
 </head>
 <body>
 
-<div class="annonce">☀️ <b>Livraison offerte</b> · Commandé avant 17 h = <b>expédié aujourd'hui</b><span class="hide-m"> · Le Duo (2 sets) à <b>55,80 €</b></span></div>
+<div class="annonce">🌙 <b>Précommandes ouvertes</b> — 0 € aujourd'hui, payez à l'expédition<span class="hide-m"> · Prix de lancement garanti · Livraison offerte</span></div>
 
 <header>
   <nav class="nav">
     <a class="logo" href="#">SOL<span>UNE</span></a>
-    <a class="btn btn-gold cta" href="#commander">Commander — 34,90 €</a>
+    <a class="btn btn-gold cta" href="#commander">Précommander — 34,90 €</a>
   </nav>
 </header>
 
@@ -188,7 +188,7 @@ footer a:hover{color:var(--gold-2)}
         <span class="price">34,90 €</span>
         <span class="badge-eco">Prix de lancement</span>
       </div>
-      <a class="btn btn-gold" href="#commander">Je commande le set ✦</a>
+      <a class="btn btn-gold" href="#commander">Je précommande — 0 € aujourd'hui ✦</a>
       <div class="trust">
         <div>🚚 Livraison offerte (7-12 j)</div>
         <div>↩️ Garantie du Clic — 30 j, remboursé sans raison</div>
@@ -311,8 +311,8 @@ footer a:hover{color:var(--gold-2)}
 
 <section class="checkout" id="commander">
   <div class="container">
-    <h2 class="sec-title">Commander votre set SOLUNE</h2>
-    <p class="sec-sub">Paiement 100 % sécurisé — cartes, Bancontact & iDEAL via Stripe.</p>
+    <h2 class="sec-title">Précommander votre set SOLUNE</h2>
+    <p class="sec-sub"><b>0 € aujourd'hui.</b> Vous réservez votre set au prix de lancement garanti (34,90 €) — le lien de paiement sécurisé vous est envoyé uniquement quand votre set part en expédition. Annulable à tout moment.</p>
     <div class="form-card">
       <form id="orderForm">
         <div class="form-grid">
@@ -337,10 +337,10 @@ footer a:hover{color:var(--gold-2)}
           </div>
           <div><label for="phone">Téléphone (suivi SMS)</label><input id="phone" name="phone" autocomplete="tel"></div>
         </div>
-        <div class="total-line"><span>Total (livraison offerte)</span><span id="total">34,90 €</span></div>
-        <button class="btn btn-gold" type="submit" style="width:100%" id="payBtn">Confirmer ma commande →</button>
+        <div class="total-line"><span>À payer aujourd'hui</span><span>0 €</span></div><div class="total-line" style="border:none;margin-top:-8px;font-weight:400;font-size:.95rem;color:#8a8d96"><span>À l'expédition (livraison offerte)</span><span id="total">34,90 €</span></div>
+        <button class="btn btn-gold" type="submit" style="width:100%" id="payBtn">Réserver ma précommande →</button>
         <div class="msg" id="msg"></div>
-        <p class="secure">🔒 Données chiffrées (SSL) · Garantie du Clic : 30 jours, remboursé sans justification · bonjour@solune.shop</p>
+        <p class="secure">🔒 0 € prélevé aujourd'hui · Prix de lancement garanti · Garantie du Clic 30 jours · bonjour@solune.shop</p>
       </form>
     </div>
   </div>
@@ -382,7 +382,7 @@ footer a:hover{color:var(--gold-2)}
   <p style="text-align:center;margin-top:34px;font-size:.78rem">⚠️ Produit contenant un aimant — déconseillé aux porteurs de dispositifs médicaux implantés sans avis médical.<br>© 2026 SOLUNE — Tous droits réservés.</p>
 </footer>
 
-<a class="btn btn-gold sticky-cta" href="#commander">Commander — 34,90 € ✦</a>
+<a class="btn btn-gold sticky-cta" href="#commander">Précommander — 0 € aujourd'hui ✦</a>
 
 <script src="config.js"></script>
 <script>
@@ -413,9 +413,6 @@ document.getElementById('orderForm').addEventListener('submit', async (e) => {
       const r = await fetch(API_BASE + '/api/orders', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
       j = await r.json();
       if (!r.ok) throw new Error(j.error || 'Erreur');
-      const s = await fetch(API_BASE + '/api/checkout', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({offer: data.offer, orderId: j.orderId})});
-      const sj = await s.json();
-      if (s.ok && sj.url) { window.location = sj.url; return; }
     } catch (netErr) {
       const demo = JSON.parse(localStorage.getItem('solune_demo_orders') || '[]');
       j = { orderId: 'SOL-DEMO-' + Math.random().toString(16).slice(2, 8).toUpperCase() };
@@ -423,13 +420,13 @@ document.getElementById('orderForm').addEventListener('submit', async (e) => {
       localStorage.setItem('solune_demo_orders', JSON.stringify(demo));
     }
     msg.className = 'msg ok';
-    msg.innerHTML = `✅ Commande <b>${j.orderId}</b> enregistrée ! Vous recevrez votre lien de paiement sécurisé par email à <b>${data.email}</b> sous quelques minutes, puis votre numéro de suivi.`;
+    msg.innerHTML = `✅ Précommande <b>${j.orderId}</b> réservée ! Rien à payer aujourd'hui — vous recevrez votre lien de paiement sécurisé à <b>${data.email}</b> au moment de l'expédition, avec votre numéro de suivi. Prix de lancement 34,90 € garanti.`;
     e.target.reset();
   } catch (err) {
     msg.className = 'msg err';
     msg.textContent = "Oups : " + err.message + " — réessayez ou écrivez-nous à bonjour@solune.shop";
   } finally {
-    btn.disabled = false; btn.textContent = "Confirmer ma commande →";
+    btn.disabled = false; btn.textContent = "Réserver ma précommande →";
   }
 });
 
