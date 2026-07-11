@@ -251,16 +251,17 @@ footer a:hover{color:var(--gold-2)}
     <h2 class="sec-title">Choisissez votre offre</h2>
     <p class="sec-sub">Livraison suivie offerte sur toutes les offres. Stock limité de lancement.</p>
     <div class="offer-cards">
-      <div class="offer" data-offer="solo" onclick="pickOffer('solo')">
+      <div class="offer popular" data-offer="solo" onclick="pickOffer('solo')">
+        <div class="pop">POUR VOUS DEUX</div>
         <h3>Le Set</h3><div class="p">34,90 €</div><div class="per">2 colliers (soleil + lune)</div>
-        <ul><li>✓ Écrin cadeau offert</li><li>✓ Livraison offerte</li><li>✓ Garantie 30 jours</li></ul>
-        <button class="btn" type="button">Choisir</button>
-      </div>
-      <div class="offer popular" data-offer="duo" onclick="pickOffer('duo')">
-        <div class="pop">LE PLUS CHOISI</div>
-        <h3>Duo d'amis</h3><div class="p">55,80 €</div><div class="per">2 sets — soit 27,90 €/set (-20 %)</div>
-        <ul><li>✓ 1 pour vous, 1 à offrir</li><li>✓ 2 écrins cadeaux</li><li>✓ Livraison offerte prioritaire</li></ul>
+        <ul><li>✓ Écrin cadeau offert</li><li>✓ Livraison offerte</li><li>✓ Garantie du Clic 30 jours</li></ul>
         <button class="btn btn-gold" type="button">Choisir</button>
+      </div>
+      <div class="offer" data-offer="duo" onclick="pickOffer('duo')">
+        <div class="pop" style="background:var(--navy);color:var(--gold-2)">IDÉE CADEAU</div>
+        <h3>Le Duo</h3><div class="p">55,80 €</div><div class="per">2 sets — soit 27,90 €/set (-20 % sur le 2ᵉ)</div>
+        <ul><li>✓ 1 pour votre couple, 1 à offrir</li><li>✓ Anniversaire, mariage, meilleure amie</li><li>✓ 2 écrins cadeaux</li></ul>
+        <button class="btn" type="button">Choisir</button>
       </div>
       <div class="offer" data-offer="trio" onclick="pickOffer('trio')">
         <h3>Le Trio</h3><div class="p">73,20 €</div><div class="per">3 sets — soit 24,40 €/set (-30 %)</div>
@@ -292,9 +293,9 @@ footer a:hover{color:var(--gold-2)}
           <div class="full">
             <label for="offer">Votre offre</label>
             <select id="offer" name="offer">
-              <option value="solo">Le Set — 2 colliers · 34,90 €</option>
-              <option value="duo" selected>Duo — 2 sets (-20 %) · 55,80 €</option>
-              <option value="trio">Trio — 3 sets (-30 %) · 73,20 €</option>
+              <option value="solo" selected>Le Set — 2 colliers (vous deux) · 34,90 €</option>
+              <option value="duo">Duo — 1 pour vous + 1 à offrir · 55,80 €</option>
+              <option value="trio">Trio — 3 sets à offrir · 73,20 €</option>
             </select>
           </div>
           <div><label for="name">Nom complet *</label><input id="name" name="name" required autocomplete="name"></div>
@@ -310,7 +311,7 @@ footer a:hover{color:var(--gold-2)}
           </div>
           <div><label for="phone">Téléphone (suivi SMS)</label><input id="phone" name="phone" autocomplete="tel"></div>
         </div>
-        <div class="total-line"><span>Total (livraison offerte)</span><span id="total">55,80 €</span></div>
+        <div class="total-line"><span>Total (livraison offerte)</span><span id="total">34,90 €</span></div>
         <button class="btn btn-gold" type="submit" style="width:100%" id="payBtn">Confirmer ma commande →</button>
         <div class="msg" id="msg"></div>
         <p class="secure">🔒 Données chiffrées (SSL) · Garantie du Clic : 30 jours, remboursé sans justification · bonjour@solune.shop</p>
