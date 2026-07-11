@@ -150,9 +150,12 @@ footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px;max-width:1
 footer h4{color:var(--cream);margin-bottom:10px;font-family:'Outfit',sans-serif;font-size:.95rem}
 footer a{color:#8f96a8;text-decoration:none;display:block;padding:2px 0}
 footer a:hover{color:var(--gold-2)}
-.sticky-cta{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:60;display:none}
+.sticky-cta{position:fixed;bottom:0;left:0;right:0;transform:none;z-index:60;display:none;border-radius:0;text-align:center;padding:15px;box-shadow:0 -6px 20px rgba(15,27,51,.25)}
 @media(max-width:860px){
+  body{padding-bottom:64px}
+  .hide-m{display:none}
   .hero-grid{grid-template-columns:1fr}
+  .hero-img{order:-1}
   .hero h1{font-size:2.3rem}
   .steps,.ben-grid,.rev-grid,.offer-cards,.gallery{grid-template-columns:1fr}
   .ben-grid{grid-template-columns:1fr 1fr}
@@ -165,7 +168,7 @@ footer a:hover{color:var(--gold-2)}
 </head>
 <body>
 
-<div class="annonce">☀️ OFFRE DE LANCEMENT — <b>Livraison offerte</b> · Le Duo (2 sets) à <b>55,80 €</b> · Commandé avant 17 h = <b>expédié aujourd'hui</b></div>
+<div class="annonce">☀️ <b>Livraison offerte</b> · Commandé avant 17 h = <b>expédié aujourd'hui</b><span class="hide-m"> · Le Duo (2 sets) à <b>55,80 €</b></span></div>
 
 <header>
   <nav class="nav">
@@ -193,7 +196,7 @@ footer a:hover{color:var(--gold-2)}
         <div>💎 Acier inoxydable</div>
       </div>
     </div>
-    <div class="hero-img"><img src="img/packshot.jpg" alt="Set de deux colliers magnétiques pour couple SOLUNE : pendentif soleil doré et pendentif lune argentée emboîtés" width="600" height="600"></div>
+    <div class="hero-img"><img src="img/clic.jpg" alt="Deux mains rapprochent les pendentifs soleil et lune SOLUNE sur le point de s'aimanter" width="600" height="600"></div>
   </div>
 </section>
 
@@ -229,7 +232,7 @@ footer a:hover{color:var(--gold-2)}
     <div class="gallery">
       <img src="img/lifestyle-couple.jpg" alt="Couple portant les colliers soleil et lune SOLUNE au coucher du soleil">
       <img src="img/giftbox.jpg" alt="Coffret cadeau SOLUNE avec les deux colliers magnétiques">
-      <img src="img/clic.jpg" alt="Gros plan : les deux pendentifs soleil et lune s'emboîtent magnétiquement">
+      <img src="img/packshot.jpg" alt="Set de deux colliers magnétiques pour couple SOLUNE : pendentif soleil doré et pendentif lune argentée emboîtés">
     </div>
   </div>
 </section>
@@ -246,6 +249,29 @@ footer a:hover{color:var(--gold-2)}
   </div>
 </section>
 
+<section style="background:#fff" id="pourquoi">
+  <div class="container" style="max-width:820px">
+    <h2 class="sec-title">Pourquoi SOLUNE, et pas un autre ?</h2>
+    <p class="sec-sub">Comparaison honnête avec ce que vous trouverez ailleurs.</p>
+    <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:.92rem;background:#fff">
+      <tr style="border-bottom:2px solid var(--gold)">
+        <th style="text-align:left;padding:12px 10px"></th>
+        <th style="padding:12px 10px;color:var(--navy)">SOLUNE</th>
+        <th style="padding:12px 10px;color:#8a8d96">Collier gravé classique</th>
+        <th style="padding:12px 10px;color:#8a8d96">Bijouterie traditionnelle</th>
+      </tr>
+      <tr style="border-bottom:1px solid #efe7d7"><td style="padding:11px 10px;color:#5b5e68">Le "clic" magnétique des retrouvailles</td><td style="text-align:center;color:var(--ok);font-weight:700">✓</td><td style="text-align:center;color:#c33">✗</td><td style="text-align:center;color:#c33">✗</td></tr>
+      <tr style="border-bottom:1px solid #efe7d7"><td style="padding:11px 10px;color:#5b5e68">Le Pacte du Clic (guide rituel offert par email)</td><td style="text-align:center;color:var(--ok);font-weight:700">✓</td><td style="text-align:center;color:#c33">✗</td><td style="text-align:center;color:#c33">✗</td></tr>
+      <tr style="border-bottom:1px solid #efe7d7"><td style="padding:11px 10px;color:#5b5e68">2 bijoux inclus (lui + elle)</td><td style="text-align:center;color:var(--ok);font-weight:700">✓ 34,90 €</td><td style="text-align:center;color:#8a8d96">1 bijou · 40-80 €</td><td style="text-align:center;color:#8a8d96">1 bijou · 150 €+</td></tr>
+      <tr style="border-bottom:1px solid #efe7d7"><td style="padding:11px 10px;color:#5b5e68">Garantie du Clic — 30 j remboursé sans raison</td><td style="text-align:center;color:var(--ok);font-weight:700">✓</td><td style="text-align:center;color:#8a8d96">Variable</td><td style="text-align:center;color:#8a8d96">Variable</td></tr>
+      <tr><td style="padding:11px 10px;color:#5b5e68">Écrin cadeau + livraison offerte UE</td><td style="text-align:center;color:var(--ok);font-weight:700">✓</td><td style="text-align:center;color:#c33">Souvent payant</td><td style="text-align:center;color:var(--ok)">✓</td></tr>
+    </table>
+    </div>
+    <p style="text-align:center;margin-top:18px;font-size:.85rem;color:#8a8d96">Un bijou gravé dit « je me souviens ». Le clic SOLUNE se revit chaque jour.</p>
+  </div>
+</section>
+
 <section id="offres">
   <div class="container">
     <h2 class="sec-title">Choisissez votre offre</h2>
@@ -254,7 +280,7 @@ footer a:hover{color:var(--gold-2)}
       <div class="offer popular" data-offer="solo" onclick="pickOffer('solo')">
         <div class="pop">POUR VOUS DEUX</div>
         <h3>Le Set</h3><div class="p">34,90 €</div><div class="per">2 colliers (soleil + lune)</div>
-        <ul><li>✓ Écrin cadeau offert</li><li>✓ Livraison offerte</li><li>✓ Garantie du Clic 30 jours</li></ul>
+        <ul><li>✓ Écrin cadeau offert</li><li>✓ Le Pacte du Clic offert (guide rituel)</li><li>✓ Garantie du Clic 30 jours</li></ul>
         <button class="btn btn-gold" type="button">Choisir</button>
       </div>
       <div class="offer" data-offer="duo" onclick="pickOffer('duo')">
@@ -370,6 +396,12 @@ function pickOffer(o){
 document.getElementById('offer').addEventListener('change', e => {
   document.getElementById('total').textContent = PRICES[e.target.value];
 });
+const stickyEl = document.querySelector('.sticky-cta');
+if (stickyEl && 'IntersectionObserver' in window) {
+  new IntersectionObserver(entries => {
+    stickyEl.style.display = (window.innerWidth <= 860 && !entries[0].isIntersecting) ? 'block' : 'none';
+  }).observe(document.getElementById('commander'));
+}
 document.getElementById('orderForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const btn = document.getElementById('payBtn'); const msg = document.getElementById('msg');
